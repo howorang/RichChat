@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="pl.dmcs.pb.richchat.app.main.MainActivity">
+    <item
+            android:id="@+id/nav_chats"
+            android:title="@string/nav_chats" />
+
+    <item
+            android:id="@+id/nav_public"
+            android:title="@string/nav_public" />
+
+    <item
+            android:id="@+id/nav_snippets"
+            android:title="@string/nav_snippets" />
+</menu>
