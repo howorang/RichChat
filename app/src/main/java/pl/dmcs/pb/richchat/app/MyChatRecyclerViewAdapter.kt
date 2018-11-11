@@ -1,4 +1,4 @@
-package pl.dmcs.pb.richchat.app.chat.conversation.list
+package pl.dmcs.pb.richchat.app
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import android.widget.TextView
 import pl.dmcs.pb.richchat.R
 
 
-import pl.dmcs.pb.richchat.app.chat.conversation.list.ChatFragment.OnListFragmentInteractionListener
-import pl.dmcs.pb.richchat.app.chat.conversation.list.dummy.DummyContent.DummyItem
+import pl.dmcs.pb.richchat.app.ChatFragment.OnListFragmentInteractionListener
+import pl.dmcs.pb.richchat.app.dummy.DummyContent.DummyItem
 
 import kotlinx.android.synthetic.main.fragment_chat.view.*
 

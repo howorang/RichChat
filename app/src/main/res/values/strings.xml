@@ -3,4 +3,7 @@
     <string name="nav_chats">Chats</string>
     <string name="nav_public">Public</string>
     <string name="nav_snippets">Snippets</string>
+    <string name="dummy_message">Cześć! Wiadomość testowa.</string>
+    <string name="dummy_timestamp">12:10</string>
+    <string name="dummy_name">Jan Kowalski</string>
 </resources>

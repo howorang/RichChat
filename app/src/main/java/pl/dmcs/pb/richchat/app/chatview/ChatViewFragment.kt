@@ -1,4 +1,4 @@
-package pl.dmcs.pb.richchat.app.chat.conversation.list
+package pl.dmcs.pb.richchat.app.chatview
 
 import android.content.Context
 import android.os.Bundle
@@ -11,15 +11,15 @@ import android.view.View
 import android.view.ViewGroup
 import pl.dmcs.pb.richchat.R
 
-import pl.dmcs.pb.richchat.app.chat.conversation.list.dummy.DummyContent
-import pl.dmcs.pb.richchat.app.chat.conversation.list.dummy.DummyContent.DummyItem
+import pl.dmcs.pb.richchat.app.chatview.dummy.DummyContent
+import pl.dmcs.pb.richchat.app.chatview.dummy.DummyContent.DummyItem
 
 /**
  * A fragment representing a list of Items.
  * Activities containing this fragment MUST implement the
- * [ChatFragment.OnListFragmentInteractionListener] interface.
+ * [ChatViewFragment.OnListFragmentInteractionListener] interface.
  */
-class ChatFragment : Fragment() {
+class ChatViewFragment : Fragment() {
 
     // TODO: Customize parameters
     private var columnCount = 1
@@ -38,7 +38,7 @@ class ChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_chat_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_chatview, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -47,7 +47,7 @@ class ChatFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyChatRecyclerViewAdapter(DummyContent.ITEMS, listener)
+                adapter = MyMessageRecyclerViewAdapter(DummyContent.ITEMS, listener)
             }
         }
         return view
@@ -91,7 +91,7 @@ class ChatFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-            ChatFragment().apply {
+            ChatViewFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
