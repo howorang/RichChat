@@ -11,7 +11,7 @@ import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.ChatFragment.OnListFragmentInteractionListener
 import pl.dmcs.pb.richchat.app.dummy.DummyContent.DummyItem
 
-import kotlinx.android.synthetic.main.fragment_chat.view.*
+import kotlinx.android.synthetic.main.fragment_chat_element.view.*
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
@@ -36,7 +36,7 @@ class MyChatRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_chat, parent, false)
+            .inflate(R.layout.fragment_chat_element, parent, false)
         return ViewHolder(view)
     }
 
