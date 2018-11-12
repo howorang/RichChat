@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.widget.Toast
-import butterknife.ButterKnife
 import dagger.android.support.DaggerAppCompatActivity
 
 /**
@@ -20,7 +19,6 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
-        ButterKnife.bind(this)
     }
 
     protected fun replaceFragment(@IdRes containerViewId: Int, fragment: Fragment) {

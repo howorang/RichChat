@@ -6,4 +6,5 @@
     <string name="dummy_message">Cześć! Wiadomość testowa.</string>
     <string name="dummy_timestamp">12:10</string>
     <string name="dummy_name">Jan Kowalski</string>
+    <string name="title_activity_auth">AuthActivity</string>
 </resources>

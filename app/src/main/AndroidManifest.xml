@@ -3,6 +3,7 @@
           package="pl.dmcs.pb.richchat">
 
     <application
+            android:name=".app.RichChatApp"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -10,6 +11,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".app.main.MainActivity">
+        </activity>
+        <activity
+                android:name=".app.auth.AuthActivity"
+                android:label="@string/title_activity_auth"
+                android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
