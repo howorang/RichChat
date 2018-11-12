@@ -1,4 +1,4 @@
-package pl.dmcs.pb.richchat.app
+package pl.dmcs.pb.richchat.app.chatlist
 
 import android.content.Context
 import android.os.Bundle
@@ -11,8 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import pl.dmcs.pb.richchat.R
 
-import pl.dmcs.pb.richchat.app.dummy.DummyContent
-import pl.dmcs.pb.richchat.app.dummy.DummyContent.DummyItem
+import pl.dmcs.pb.richchat.app.chatlist.dummy.DummyContent
+import pl.dmcs.pb.richchat.app.chatlist.dummy.DummyContent.DummyItem
 
 /**
  * A fragment representing a list of Items.

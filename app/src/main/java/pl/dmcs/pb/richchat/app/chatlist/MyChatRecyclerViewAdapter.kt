@@ -1,17 +1,14 @@
-package pl.dmcs.pb.richchat.app
+package pl.dmcs.pb.richchat.app.chatlist
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import pl.dmcs.pb.richchat.R
 
 
-import pl.dmcs.pb.richchat.app.ChatFragment.OnListFragmentInteractionListener
-import pl.dmcs.pb.richchat.app.dummy.DummyContent.DummyItem
-
-import kotlinx.android.synthetic.main.fragment_chat_element.view.*
+import pl.dmcs.pb.richchat.app.chatlist.ChatFragment.OnListFragmentInteractionListener
+import pl.dmcs.pb.richchat.app.chatlist.dummy.DummyContent.DummyItem
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the

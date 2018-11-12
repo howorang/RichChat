@@ -1,4 +1,4 @@
-package pl.dmcs.pb.richchat.app.dummy
+package pl.dmcs.pb.richchat.app.chatlist.dummy
 
 import java.util.ArrayList
 import java.util.HashMap
