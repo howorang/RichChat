@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import pl.dmcs.pb.richchat.R
 
 
-import pl.dmcs.pb.richchat.app.chatlist.ChatFragment.OnListFragmentInteractionListener
+import pl.dmcs.pb.richchat.app.chatlist.ChatListFragment.OnListFragmentInteractionListener
 import pl.dmcs.pb.richchat.app.chatlist.dummy.DummyContent.DummyItem
 
 /**
@@ -15,10 +15,10 @@ import pl.dmcs.pb.richchat.app.chatlist.dummy.DummyContent.DummyItem
  * specified [OnListFragmentInteractionListener].
  * TODO: Replace the implementation with code for your data type.
  */
-class MyChatRecyclerViewAdapter(
+class ChatListRecyclerViewAdapter(
     private val mValues: List<DummyItem>,
     private val mListener: OnListFragmentInteractionListener?
-) : RecyclerView.Adapter<MyChatRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ChatListRecyclerViewAdapter.ViewHolder>() {
 
     private val mOnClickListener: View.OnClickListener
 

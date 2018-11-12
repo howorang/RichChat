@@ -17,9 +17,9 @@ import pl.dmcs.pb.richchat.app.chatlist.dummy.DummyContent.DummyItem
 /**
  * A fragment representing a list of Items.
  * Activities containing this fragment MUST implement the
- * [ChatFragment.OnListFragmentInteractionListener] interface.
+ * [ChatListFragment.OnListFragmentInteractionListener] interface.
  */
-class ChatFragment : Fragment() {
+class ChatListFragment : Fragment() {
 
     // TODO: Customize parameters
     private var columnCount = 1
@@ -47,7 +47,7 @@ class ChatFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyChatRecyclerViewAdapter(DummyContent.ITEMS, listener)
+                adapter = ChatListRecyclerViewAdapter(DummyContent.ITEMS, listener)
             }
         }
         return view
@@ -91,7 +91,7 @@ class ChatFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-            ChatFragment().apply {
+            ChatListFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
