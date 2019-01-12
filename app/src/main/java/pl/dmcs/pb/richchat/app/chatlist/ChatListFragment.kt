@@ -14,11 +14,6 @@ import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.chatlist.dummy.DummyContent
 import pl.dmcs.pb.richchat.app.chatlist.dummy.DummyContent.DummyItem
 
-/**
- * A fragment representing a list of Items.
- * Activities containing this fragment MUST implement the
- * [ChatListFragment.OnListFragmentInteractionListener] interface.
- */
 class ChatListFragment : Fragment() {
 
     // TODO: Customize parameters
@@ -55,11 +50,6 @@ class ChatListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
-        }
     }
 
     override fun onDetach() {
@@ -67,17 +57,6 @@ class ChatListFragment : Fragment() {
         listener = null
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson
-     * [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onListFragmentInteraction(item: DummyItem?)
@@ -85,10 +64,8 @@ class ChatListFragment : Fragment() {
 
     companion object {
 
-        // TODO: Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
 
-        // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
             ChatListFragment().apply {

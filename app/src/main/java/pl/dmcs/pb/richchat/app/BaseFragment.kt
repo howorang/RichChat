@@ -8,12 +8,7 @@ import javax.inject.Inject
 abstract class BaseFragment<P : Presenter> : DaggerFragment() {
 
     @Inject
-    protected lateinit var presenter: P;
-
-    override fun onResume() {
-        super.onResume()
-        presenter.onResume()
-    }
+    protected lateinit var presenter: P
 
     override fun onDestroy() {
         super.onDestroy()

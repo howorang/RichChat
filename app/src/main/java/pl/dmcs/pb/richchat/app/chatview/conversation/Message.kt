@@ -1,4 +1,4 @@
-package pl.dmcs.pb.richchat.app.chatview
+package pl.dmcs.pb.richchat.app.chatview.conversation
 
 import java.time.LocalDate
 
