@@ -1,7 +1,8 @@
 package pl.dmcs.pb.richchat.data
 
 import com.google.firebase.database.FirebaseDatabase
-import pl.dmcs.pb.richchat.data.entity.Chat
+import pl.dmcs.pb.richchat.data.entity.ChatLabel
+import pl.dmcs.pb.richchat.data.entity.ChatMessages
 import pl.dmcs.pb.richchat.data.entity.Message
 import javax.inject.Inject
 
@@ -9,20 +10,21 @@ class ChatRepository {
     @Inject
     lateinit var database: FirebaseDatabase
 
-    fun createChat(chat: Chat): String {
-        val chatRef = database.reference.child("chats").push()
-        chat.chatId = chatRef.key!!
-        chatRef.setValue(chat)
-        chat.participants.forEach {
-            val userChatRef = database.reference.child("/users/$it/chats/${chat.chatId}")
-            userChatRef.setValue(true)
+    fun createChat(chatLabel: ChatLabel): String {
+        val chatRef = database.reference.child("chat_messages").push()
+        chatLabel.chatId = chatRef.key!!
+        val chatMessages = ChatMessages(chatId = chatLabel.chatId)
+        chatRef.setValue(chatMessages)
+        chatLabel.participants.forEach {
+            val userChatRef = database.reference.child("/users/$it/chats/${chatLabel.chatId}")
+            userChatRef.setValue(chatLabel)
         }
-        return chat.chatId
+        return chatLabel.chatId
     }
 
-    fun sendMessage(chat: Chat, message: Message) {
+    fun sendMessage(chatId : String, message: Message) {
         val reference = database.reference
-        val chatRef = reference.child("/chats/${chat.chatId}/messages")
+        val chatRef = reference.child("/chats/$chatId/messages")
         val messageRef = chatRef.push()
         messageRef.setValue(message)
     }

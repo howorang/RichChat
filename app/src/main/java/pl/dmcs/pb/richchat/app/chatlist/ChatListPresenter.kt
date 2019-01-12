@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.BasePresenter
-import pl.dmcs.pb.richchat.data.entity.Chat
+import pl.dmcs.pb.richchat.data.entity.ChatLabel
 import javax.inject.Inject
 
 class ChatListPresenter
@@ -28,14 +28,14 @@ constructor(
         val userId = firebaseAuth.currentUser!!.uid
         val query = firebaseDatabase.reference.child("/users/$userId/chats/")
         val options = FirebaseRecyclerOptions
-            .Builder<Chat>()
+            .Builder<ChatLabel>()
             .setQuery(query
-            ) { it.getValue<Chat>(Chat::class.java)!! }
+            ) { it.getValue<ChatLabel>(ChatLabel::class.java)!! }
             .build()
 
-        val adapter = object : FirebaseRecyclerAdapter<Chat, ChatListViewHolder>(options) {
-            override fun onBindViewHolder(holder: ChatListViewHolder, position: Int, model: Chat) {
-                holder.bind()
+        val adapter = object : FirebaseRecyclerAdapter<ChatLabel, ChatListViewHolder>(options) {
+            override fun onBindViewHolder(holder: ChatListViewHolder, position: Int, model: ChatLabel) {
+                holder.bind(model)
             }
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatListViewHolder {
