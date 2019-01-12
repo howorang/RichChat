@@ -9,11 +9,11 @@ class ChatRepository {
     @Inject
     lateinit var database: FirebaseDatabase
 
-    fun createChat(chat: Chat, participants: List<String>): String {
+    fun createChat(chat: Chat): String {
         val chatRef = database.reference.child("chats").push()
         chat.chatId = chatRef.key!!
         chatRef.setValue(chat)
-        participants.forEach {
+        chat.participants.forEach {
             val userChatRef = database.reference.child("/users/$it/chats/${chat.chatId}")
             userChatRef.setValue(true)
         }
