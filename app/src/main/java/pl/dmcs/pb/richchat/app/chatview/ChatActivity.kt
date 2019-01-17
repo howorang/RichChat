@@ -11,4 +11,15 @@ class ChatActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_view)
     }
+
+    companion object {
+
+        private val INTENT_USER_ID = "user_id"
+
+        fun newIntent(context: Context, user: User): Intent {
+            val intent = Intent(context, UserDetailActivity::class.java)
+            intent.putExtra(INTENT_USER_ID, user.id)
+            return intent
+        }
+    }
 }

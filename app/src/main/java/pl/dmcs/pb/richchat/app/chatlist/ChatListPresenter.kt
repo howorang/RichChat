@@ -2,6 +2,7 @@ package pl.dmcs.pb.richchat.app.chatlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -36,6 +37,7 @@ constructor(
         val adapter = object : FirebaseRecyclerAdapter<ChatLabel, ChatListViewHolder>(options) {
             override fun onBindViewHolder(holder: ChatListViewHolder, position: Int, model: ChatLabel) {
                 holder.bind(model)
+                bindOnClickListener(holder.itemView, model)
             }
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatListViewHolder {
@@ -45,5 +47,9 @@ constructor(
             }
 
         }
+    }
+
+    fun bindOnClickListener(view : View, model : ChatLabel) {
+        view.setOnClickListener { View.OnClickListener { TODO() } }
     }
 }
