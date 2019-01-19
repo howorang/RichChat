@@ -1,17 +1,10 @@
 package pl.dmcs.pb.richchat.data
 
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import io.reactivex.Observable
 import pl.dmcs.pb.richchat.data.entity.User
-import javax.inject.Inject
 
-class UserRepository {
-
-    @Inject
-    lateinit var database : FirebaseDatabase
+class UserRepository(val database: FirebaseDatabase) {
 
     fun createUser(user : User) : String {
         val reference = database.reference

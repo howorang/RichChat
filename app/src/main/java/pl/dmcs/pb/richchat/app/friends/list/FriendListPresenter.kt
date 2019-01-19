@@ -1,5 +1,6 @@
 package pl.dmcs.pb.richchat.app.friends.list
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -58,10 +59,24 @@ constructor(
             }
 
             private fun bindOnClickListener(itemView: View, model: UserLabel) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                val alertDialog: AlertDialog? = view?.let {
+                    val builder = AlertDialog.Builder(it)
+                    builder.apply {
+                        setPositiveButton(R.string.ok
+                        ) { dialog, id ->
+                            startChat(model.userId)
+                        }
+                        setNegativeButton(R.string.cancel){ _, _ -> Unit}
+                    }
+                    builder.create()
+                }
             }
         }
         view.friend_list.adapter = adapter
+    }
+
+    private fun startChat(userId : String) {
+
     }
 
 }

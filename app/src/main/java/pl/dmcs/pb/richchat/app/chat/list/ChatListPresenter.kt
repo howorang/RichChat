@@ -1,6 +1,5 @@
 package pl.dmcs.pb.richchat.app.chat.list
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_chat_list.*
 import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.BasePresenter
 import pl.dmcs.pb.richchat.app.chat.view.ChatActivity
-import pl.dmcs.pb.richchat.data.entity.ChatLabel
+import pl.dmcs.pb.richchat.data.entity.ChatHandle
 import javax.inject.Inject
 
 class ChatListPresenter
@@ -31,13 +30,13 @@ constructor(
         val userId = firebaseAuth.currentUser!!.uid
         val query = firebaseDatabase.reference.child("/users/$userId/chats/")
         val options = FirebaseRecyclerOptions
-            .Builder<ChatLabel>()
+            .Builder<ChatHandle>()
             .setQuery(query
-            ) { it.getValue<ChatLabel>(ChatLabel::class.java)!! }
+            ) { it.getValue<ChatHandle>(ChatHandle::class.java)!! }
             .build()
 
-        val adapter = object : FirebaseRecyclerAdapter<ChatLabel, ChatListViewHolder>(options) {
-            override fun onBindViewHolder(holder: ChatListViewHolder, position: Int, model: ChatLabel) {
+        val adapter = object : FirebaseRecyclerAdapter<ChatHandle, ChatListViewHolder>(options) {
+            override fun onBindViewHolder(holder: ChatListViewHolder, position: Int, model: ChatHandle) {
                 holder.bind(model)
                 bindOnClickListener(holder.itemView, model)
             }
@@ -51,7 +50,7 @@ constructor(
         view.recycler.adapter = adapter
     }
 
-    fun bindOnClickListener(view : View, model : ChatLabel) {
-        view.setOnClickListener { View.OnClickListener { ChatActivity.newIntent(view.context, model.chatId) } }
+    fun bindOnClickListener(view : View, model : ChatHandle) {
+        view.setOnClickListener { View.OnClickListener { ChatActivity.startChatWithUser(view.context, model.chatId) } }
     }
 }

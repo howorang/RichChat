@@ -15,12 +15,13 @@ import pl.dmcs.pb.richchat.data.UserRepository
 import pl.dmcs.pb.richchat.data.entity.User
 import javax.inject.Inject
 
-class AuthActivity
-@Inject
-constructor(
-    private val firebaseAuth: FirebaseAuth,
-    private val userRepository: UserRepository
-) : DaggerAppCompatActivity() {
+class AuthActivity : DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
+
+    @Inject
+    lateinit var userRepository: UserRepository
 
     val RC_SIGN_IN = 123
 

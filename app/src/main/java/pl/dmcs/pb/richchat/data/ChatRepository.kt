@@ -1,25 +1,22 @@
 package pl.dmcs.pb.richchat.data
 
 import com.google.firebase.database.FirebaseDatabase
-import pl.dmcs.pb.richchat.data.entity.ChatLabel
+import pl.dmcs.pb.richchat.data.entity.ChatHandle
 import pl.dmcs.pb.richchat.data.entity.ChatMessages
 import pl.dmcs.pb.richchat.data.entity.Message
-import javax.inject.Inject
 
-class ChatRepository {
-    @Inject
-    lateinit var database: FirebaseDatabase
+class ChatRepository(val database: FirebaseDatabase) {
 
-    fun createChat(chatLabel: ChatLabel): String {
+    fun createChat(chatHandle: ChatHandle): String {
         val chatRef = database.reference.child("chat_messages").push()
-        chatLabel.chatId = chatRef.key!!
-        val chatMessages = ChatMessages(chatId = chatLabel.chatId)
+        chatHandle.chatId = chatRef.key!!
+        val chatMessages = ChatMessages(chatId = chatHandle.chatId)
         chatRef.setValue(chatMessages)
-        chatLabel.participants.forEach {
-            val userChatRef = database.reference.child("/users/$it/chats/${chatLabel.chatId}")
-            userChatRef.setValue(chatLabel)
+        chatHandle.participants.forEach {
+            val userChatRef = database.reference.child("/users/$it/chats/${chatHandle.chatId}")
+            userChatRef.setValue(chatHandle)
         }
-        return chatLabel.chatId
+        return chatHandle.chatId
     }
 
     fun sendMessage(chatId : String, message: Message) {
@@ -28,6 +25,4 @@ class ChatRepository {
         val messageRef = chatRef.push()
         messageRef.setValue(message)
     }
-
-
 }

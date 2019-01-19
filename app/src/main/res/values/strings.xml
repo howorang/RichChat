@@ -7,4 +7,6 @@
     <string name="dummy_timestamp">12:10</string>
     <string name="dummy_name">Jan Kowalski</string>
     <string name="title_activity_auth">AuthActivity</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Anuluj</string>
 </resources>
