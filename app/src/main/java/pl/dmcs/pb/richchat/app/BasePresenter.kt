@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 abstract class BasePresenter : Presenter {
 
-    protected val disposable: CompositeDisposable = CompositeDisposable()
+    protected val disposable = CompositeDisposable()
 
     override fun onDestroy() {
         disposable.clear()

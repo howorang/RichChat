@@ -1,4 +1,4 @@
-package pl.dmcs.pb.richchat.app.chatlist
+package pl.dmcs.pb.richchat.app.chat.list
 
 import dagger.Module
 

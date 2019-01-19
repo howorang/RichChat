@@ -1,4 +1,4 @@
-package pl.dmcs.pb.richchat.app.chatview.conversation
+package pl.dmcs.pb.richchat.app.chat.view.conversation
 
 import android.os.Bundle
 import pl.dmcs.pb.richchat.app.BasePresenter

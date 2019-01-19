@@ -1,12 +1,13 @@
-package pl.dmcs.pb.richchat.app.chatview
+package pl.dmcs.pb.richchat.app.chat.view
 
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import pl.dmcs.pb.richchat.app.BaseActivity
 import pl.dmcs.pb.richchat.app.BaseActivityModule
-import pl.dmcs.pb.richchat.app.chatview.conversation.ConversationFragment
-import pl.dmcs.pb.richchat.app.chatview.conversation.ConversationFragmentModule
+import pl.dmcs.pb.richchat.app.Presenter
+import pl.dmcs.pb.richchat.app.chat.view.conversation.ConversationFragment
+import pl.dmcs.pb.richchat.app.chat.view.conversation.ConversationFragmentModule
 import pl.dmcs.pb.richchat.dagger.ActivityScope
 import pl.dmcs.pb.richchat.dagger.FragmentScope
 

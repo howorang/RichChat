@@ -1,4 +1,4 @@
-package pl.dmcs.pb.richchat.app.chatlist
+package pl.dmcs.pb.richchat.app.chat.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.BaseFragment
-import kotlinx.android.synthetic.main.fragment_chat_list.*
 
 class ChatListFragment : BaseFragment<ChatListPresenter>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        presenter.onCreate(savedInstanceState);
+    override fun onStart() {
+        super.onStart()
+        presenter.onStart()
     }
 
     override fun onCreateView(

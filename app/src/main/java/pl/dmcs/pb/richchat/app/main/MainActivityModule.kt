@@ -5,8 +5,9 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import pl.dmcs.pb.richchat.app.BaseActivity
 import pl.dmcs.pb.richchat.app.BaseActivityModule
-import pl.dmcs.pb.richchat.app.chatlist.ChatListFragment
-import pl.dmcs.pb.richchat.app.chatlist.ChatListFragmentModule
+import pl.dmcs.pb.richchat.app.Presenter
+import pl.dmcs.pb.richchat.app.chat.list.ChatListFragment
+import pl.dmcs.pb.richchat.app.chat.list.ChatListFragmentModule
 import pl.dmcs.pb.richchat.dagger.ActivityScope
 import pl.dmcs.pb.richchat.dagger.FragmentScope
 

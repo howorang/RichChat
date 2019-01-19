@@ -10,6 +10,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".app.friends.list.FriendListActivity">
+        </activity>
+        <activity android:name=".app.chat.add.AddChatActivity">
+        </activity>
         <activity android:name=".app.main.MainActivity">
         </activity>
         <activity
@@ -22,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".app.chatview.ChatActivity">
+        <activity android:name=".app.chat.view.ChatActivity">
         </activity>
     </application>
 

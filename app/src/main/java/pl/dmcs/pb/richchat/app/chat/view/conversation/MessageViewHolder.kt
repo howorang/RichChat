@@ -1,4 +1,4 @@
-package pl.dmcs.pb.richchat.app.chatview.conversation
+package pl.dmcs.pb.richchat.app.chat.view.conversation
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

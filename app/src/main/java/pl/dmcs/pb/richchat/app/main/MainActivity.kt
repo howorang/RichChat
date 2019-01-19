@@ -4,7 +4,7 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.BaseActivity
-import pl.dmcs.pb.richchat.app.chatlist.ChatListFragment
+import pl.dmcs.pb.richchat.app.chat.list.ChatListFragment
 
 class MainActivity : BaseActivity() {
 

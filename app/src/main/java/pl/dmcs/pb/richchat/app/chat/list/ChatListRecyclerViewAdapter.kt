@@ -1,4 +1,4 @@
-package pl.dmcs.pb.richchat.app.chatlist
+package pl.dmcs.pb.richchat.app.chat.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

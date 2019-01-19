@@ -6,18 +6,23 @@ import android.os.Bundle
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_auth.*
 import pl.dmcs.pb.richchat.R
-import pl.dmcs.pb.richchat.app.BaseActivity
 import pl.dmcs.pb.richchat.app.main.MainActivity
+import pl.dmcs.pb.richchat.data.UserRepository
+import pl.dmcs.pb.richchat.data.entity.User
 import javax.inject.Inject
 
-class AuthActivity : BaseActivity() {
+class AuthActivity
+@Inject
+constructor(
+    private val firebaseAuth: FirebaseAuth,
+    private val userRepository: UserRepository
+) : DaggerAppCompatActivity() {
 
     val RC_SIGN_IN = 123
-
-    @Inject
-    lateinit var firebaseAuth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +60,7 @@ class AuthActivity : BaseActivity() {
         val response = IdpResponse.fromResultIntent(data)
         when (resultCode) {
             Activity.RESULT_OK -> {
+                addToDb()
                 startActivity(
                     Intent(this, MainActivity::class.java)
                         .putExtra("aut_token", response?.idpToken)
@@ -63,6 +69,12 @@ class AuthActivity : BaseActivity() {
             }
             else -> handleFailure(requestCode, response)
         }
+    }
+
+    private fun addToDb() {
+        val currentUser : FirebaseUser = firebaseAuth.currentUser!!
+        val user = User(currentUser.uid, currentUser.displayName!!, null, null)
+        userRepository.createUser(user)
     }
 
     private fun handleFailure(requestCode: Int, response: IdpResponse?) {
