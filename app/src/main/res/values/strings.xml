@@ -11,4 +11,6 @@
     <string name="cancel">Anuluj</string>
     <string name="people">People</string>
     <string name="message_hint">Wiadomość</string>
+    <string name="send">Wyślij</string>
+    <string name="logout">Wyloguj</string>
 </resources>

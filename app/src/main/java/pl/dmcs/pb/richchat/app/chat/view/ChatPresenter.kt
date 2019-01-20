@@ -1,10 +1,14 @@
 package pl.dmcs.pb.richchat.app.chat.view
 
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_chat_view.*
 import pl.dmcs.pb.richchat.app.BasePresenter
 import pl.dmcs.pb.richchat.data.ChatRepository
 import pl.dmcs.pb.richchat.data.entity.ChatHandle
+import pl.dmcs.pb.richchat.data.entity.Message
 import javax.inject.Inject
 
 class NoParamertersPassed : Throwable()
@@ -22,6 +26,31 @@ constructor(
     fun onCreate(savedInstanceState: Bundle?) {
         initChatId()
         view.startConversationFragment(chatId)
+        bindSendButtons()
+    }
+
+    private fun bindSendButtons() {
+        view.message_edit_text.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEND -> {
+                    sendMessage()
+                    true
+                }
+                else -> false
+            }
+        }
+        view.send_button.setOnClickListener {
+            sendMessage()
+        }
+    }
+
+    private fun sendMessage() {
+        val currentUser = firebaseAuth.currentUser!!
+        val message = Message(
+            text = view.message_edit_text.text.toString(), senderDisplayName = currentUser.displayName!!,
+            senderId = currentUser.uid
+        )
+        chatRepository.sendMessage(chatId, message)
     }
 
     private fun initChatId() {

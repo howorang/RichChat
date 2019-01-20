@@ -10,6 +10,6 @@ class MessageViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     fun bind(message : Message) {
         itemView.message_content.text = message.text
         itemView.message_name.text = message.senderDisplayName
-        itemView.message_timestamp.text = message.messageTimestamp.format(DateTimeFormatter.BASIC_ISO_DATE)
+        itemView.message_timestamp.text = message.messageTimestamp
     }
 }

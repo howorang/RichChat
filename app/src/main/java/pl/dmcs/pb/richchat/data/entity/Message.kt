@@ -1,8 +1,14 @@
 package pl.dmcs.pb.richchat.data.entity
 
-import java.time.ZonedDateTime
+import java.text.SimpleDateFormat
+import java.util.*
 
-data class Message (var text : String,
-                    var attachment : Attachment,
-                    var senderDisplayName : String,
-                    var messageTimestamp : ZonedDateTime)
+val messageDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+
+data class Message(
+    var senderId: String = "",
+    var text: String = "",
+    var attachment: Attachment? = null,
+    var senderDisplayName: String = "",
+    var messageTimestamp: String = ""
+)

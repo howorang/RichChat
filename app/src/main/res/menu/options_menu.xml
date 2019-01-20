@@ -3,5 +3,5 @@
     <item android:id="@+id/people_option"
           android:title="@string/people"/>
     <item android:id="@+id/logout_option"
-          android:title="@string/people"/>
+          android:title="@string/logout"/>
 </menu>

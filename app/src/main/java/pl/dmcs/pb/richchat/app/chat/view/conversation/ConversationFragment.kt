@@ -15,6 +15,16 @@ class ConversationFragment : BaseFragment<ConversationPresenter>() {
         presenter.onCreate(savedInstanceState)
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter.onPause()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
