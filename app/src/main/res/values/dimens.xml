@@ -3,7 +3,7 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="message_name_text_size">12sp</dimen>
     <dimen name="message_timestamp_text_size">12sp</dimen>
-    <dimen name="message_max_width">150dp</dimen>
+    <dimen name="message_width">300dp</dimen>
     <dimen name="message_top_margin">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 </resources>
