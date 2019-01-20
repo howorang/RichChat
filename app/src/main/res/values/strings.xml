@@ -9,4 +9,5 @@
     <string name="title_activity_auth">AuthActivity</string>
     <string name="ok">OK</string>
     <string name="cancel">Anuluj</string>
+    <string name="people">People</string>
 </resources>
