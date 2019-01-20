@@ -22,13 +22,22 @@ constructor(
     private val firebaseAuth: FirebaseAuth
 ) : BasePresenter() {
 
-    fun onStart() {
-        initChatListAdapter()
+    private lateinit var adapter :  FirebaseRecyclerAdapter<ChatHandle, ChatListViewHolder>
+
+
+
+    fun onResume() {
+        if (!::adapter.isInitialized) { initChatListAdapter() }
+        adapter.startListening()
+    }
+
+    fun onPause() {
+        adapter.stopListening()
     }
 
     private fun initChatListAdapter() {
         val userId = firebaseAuth.currentUser!!.uid
-        val query = firebaseDatabase.reference.child("/users/$userId/chats/")
+        val query = firebaseDatabase.reference.child("users/$userId/chats/")
         val options = FirebaseRecyclerOptions
             .Builder<ChatHandle>()
             .setQuery(
@@ -36,7 +45,7 @@ constructor(
             ) { it.getValue<ChatHandle>(ChatHandle::class.java)!! }
             .build()
 
-        val adapter = object : FirebaseRecyclerAdapter<ChatHandle, ChatListViewHolder>(options) {
+        adapter = object : FirebaseRecyclerAdapter<ChatHandle, ChatListViewHolder>(options) {
             override fun onBindViewHolder(holder: ChatListViewHolder, position: Int, model: ChatHandle) {
                 holder.bind(model)
                 bindOnClickListener(holder.itemView, model)
@@ -53,7 +62,8 @@ constructor(
 
     fun bindOnClickListener(view: View, model: ChatHandle) {
         view.setOnClickListener {
-            view.context.startActivity(ChatActivity.startChatWithUser(view.context, model.chatId))
+            view.context.startActivity(ChatActivity.openChat(view.context, model.chatId))
         }
     }
+
 }

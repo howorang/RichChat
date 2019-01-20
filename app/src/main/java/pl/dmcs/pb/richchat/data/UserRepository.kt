@@ -8,8 +8,7 @@ class UserRepository(val database: FirebaseDatabase) {
 
     fun createUser(user : User) : String {
         val reference = database.reference
-        val newChildRef = reference.child("users").push()
-        user.userId = newChildRef.key!!
+        val newChildRef = reference.child("users/${user.userId}")
         newChildRef.setValue(user)
         return user.userId
     }

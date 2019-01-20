@@ -8,7 +8,7 @@ import pl.dmcs.pb.richchat.data.entity.Message
 class ChatRepository(val database: FirebaseDatabase) {
 
     fun createChat(chatHandle: ChatHandle): String {
-        val chatRef = database.reference.child("chat_messages").push()
+        val chatRef = database.reference.child("/chat_messages").push()
         chatHandle.chatId = chatRef.key!!
         val chatMessages = ChatMessages(chatId = chatHandle.chatId)
         chatRef.setValue(chatMessages)

@@ -5,8 +5,23 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".app.chat.view.ChatActivity">
+        tools:context=".app.chat.view.ChatActivity"
+        android:layout_above="@id/conversation_fragment_container">
     <FrameLayout android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:id="@+id/conversation_fragment_container"/>
+                 android:layout_height="match_parent"
+                 android:id="@+id/conversation_fragment_container"
+                 android:layout_alignParentTop="true"
+                 android:layout_above="@id/message_container"/>
+    <LinearLayout android:id="@+id/message_container"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:orientation="horizontal">
+        <EditText android:id="@+id/message_edit_text"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="text"
+                  android:imeOptions="actionSend"
+                  android:hint="@string/message_hint"/>
+    </LinearLayout>
 </RelativeLayout>

@@ -28,10 +28,20 @@ constructor(
         var username: String = ""
     )
 
+    private lateinit var adapter: FirebaseRecyclerAdapter<UserLabel, MyViewHolder>
+
     class MyViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 
     fun onCreate(savedInstanceState: Bundle?) {
         initChatListAdapter()
+    }
+
+    fun onResume() {
+        adapter.startListening()
+    }
+
+    fun onPause() {
+        adapter.stopListening()
     }
 
     private fun initChatListAdapter() {
@@ -43,7 +53,7 @@ constructor(
             ) { it.getValue(UserLabel::class.java)!! }
             .build()
 
-        val adapter = object : FirebaseRecyclerAdapter<UserLabel, MyViewHolder>(options) {
+        adapter = object : FirebaseRecyclerAdapter<UserLabel, MyViewHolder>(options) {
             override fun onBindViewHolder(holder: MyViewHolder, position: Int, model: UserLabel) {
                 holder.textView.text = model.username
                 bindOnClickListener(holder.itemView, model)
@@ -77,7 +87,6 @@ constructor(
             }
         }
         view.friend_list.adapter = adapter
-        adapter.startListening()
     }
 
     private fun startChat(userId: String) {

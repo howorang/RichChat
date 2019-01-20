@@ -20,4 +20,14 @@ class PeopleListActivity : BaseActivity() {
         friend_list.setHasFixedSize(true)
         presenter.onCreate(savedInstanceState)
     }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter.onPause()
+    }
 }

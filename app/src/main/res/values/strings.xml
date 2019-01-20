@@ -10,4 +10,5 @@
     <string name="ok">OK</string>
     <string name="cancel">Anuluj</string>
     <string name="people">People</string>
+    <string name="message_hint">Wiadomość</string>
 </resources>

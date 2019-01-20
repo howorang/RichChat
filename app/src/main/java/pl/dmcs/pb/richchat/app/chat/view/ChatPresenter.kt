@@ -1,6 +1,7 @@
 package pl.dmcs.pb.richchat.app.chat.view
 
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
 import pl.dmcs.pb.richchat.app.BasePresenter
 import pl.dmcs.pb.richchat.data.ChatRepository
 import pl.dmcs.pb.richchat.data.entity.ChatHandle
@@ -12,12 +13,18 @@ class ChatPresenter
 @Inject
 constructor(
     private val view: ChatActivity,
-    private val chatRepository: ChatRepository
+    private val chatRepository: ChatRepository,
+    private val firebaseAuth: FirebaseAuth
 ) : BasePresenter() {
 
     private lateinit var chatId: String
 
     fun onCreate(savedInstanceState: Bundle?) {
+        initChatId()
+        view.startConversationFragment(chatId)
+    }
+
+    private fun initChatId() {
         val extras = view.intent.extras
         chatId =
                 when {
@@ -30,7 +37,9 @@ constructor(
     }
 
     private fun startChatWithUser(userId: String): String {
-        val chat = ChatHandle(userId)
+        val currentUser = firebaseAuth.currentUser!!
+        val chat = ChatHandle()
+        chat.participants.addAll(arrayListOf(currentUser.uid, userId))
         return chatRepository.createChat(chat)
     }
 

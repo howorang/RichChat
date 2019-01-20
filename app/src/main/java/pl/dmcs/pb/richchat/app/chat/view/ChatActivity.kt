@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.BaseActivity
+import pl.dmcs.pb.richchat.app.chat.view.conversation.ConversationFragment
 import javax.inject.Inject
 
 const val CHAT_ID_KEY = "chat_id"
@@ -21,6 +22,10 @@ constructor() : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_view)
         presenter.onCreate(savedInstanceState)
+    }
+
+    fun startConversationFragment(chatId: String) {
+        replaceFragment(R.id.conversation_fragment_container, ConversationFragment.newInstance(chatId))
     }
 
     companion object {
