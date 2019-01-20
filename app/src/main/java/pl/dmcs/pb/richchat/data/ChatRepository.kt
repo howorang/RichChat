@@ -15,7 +15,7 @@ class ChatRepository(val database: FirebaseDatabase) {
         val chatMessages = ChatMessages(chatId = chatHandle.chatId)
         chatRef.setValue(chatMessages)
         chatHandle.participants.forEach {
-            val userChatRef = database.reference.child("/users/$it/chats/${chatHandle.chatId}")
+            val userChatRef = database.reference.child("/users/${it.userId}/chats/${chatHandle.chatId}")
             userChatRef.setValue(chatHandle)
         }
         return chatHandle.chatId

@@ -5,8 +5,9 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_chat_element.view.*
 import pl.dmcs.pb.richchat.data.entity.ChatHandle
 
-class ChatListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+class ChatListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(chatDto: ChatHandle) {
-        itemView.username.text = chatDto.participants.reduce{sum, element -> "$sum,$element" }
+        itemView.username.text = chatDto.participants.map { userHandle -> userHandle.username }
+            .reduce { sum, element -> "$sum, $element" }
     }
 }

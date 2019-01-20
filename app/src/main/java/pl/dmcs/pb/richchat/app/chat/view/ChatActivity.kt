@@ -6,10 +6,11 @@ import android.os.Bundle
 import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.BaseActivity
 import pl.dmcs.pb.richchat.app.chat.view.conversation.ConversationFragment
+import pl.dmcs.pb.richchat.data.entity.UserHandle
 import javax.inject.Inject
 
 const val CHAT_ID_KEY = "chat_id"
-const val USER_ID_KEY = "user_id"
+const val USER_KEY = "user_id"
 
 class ChatActivity
 @Inject
@@ -35,9 +36,9 @@ constructor() : BaseActivity() {
             return intent
         }
 
-        fun startChatWithUser(context: Context, userId: String): Intent {
+        fun startChatWithUser(context: Context, user: UserHandle): Intent {
             val intent = Intent(context, ChatActivity::class.java)
-            intent.putExtra(USER_ID_KEY, userId)
+            intent.putExtra(USER_KEY, user)
             return intent
         }
 

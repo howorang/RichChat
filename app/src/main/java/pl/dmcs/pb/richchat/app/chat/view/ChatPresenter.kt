@@ -1,7 +1,6 @@
 package pl.dmcs.pb.richchat.app.chat.view
 
 import android.os.Bundle
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_chat_view.*
@@ -9,6 +8,7 @@ import pl.dmcs.pb.richchat.app.BasePresenter
 import pl.dmcs.pb.richchat.data.ChatRepository
 import pl.dmcs.pb.richchat.data.entity.ChatHandle
 import pl.dmcs.pb.richchat.data.entity.Message
+import pl.dmcs.pb.richchat.data.entity.UserHandle
 import javax.inject.Inject
 
 class NoParamertersPassed : Throwable()
@@ -58,17 +58,17 @@ constructor(
         chatId =
                 when {
                     extras.containsKey(CHAT_ID_KEY) -> extras.getString(CHAT_ID_KEY)
-                    extras.containsKey(USER_ID_KEY) -> startChatWithUser(
-                        extras.getString(USER_ID_KEY)
+                    extras.containsKey(USER_KEY) -> startChatWithUser(
+                        extras.get(USER_KEY) as UserHandle
                     )
                     else -> throw  NoParamertersPassed()
                 }
     }
 
-    private fun startChatWithUser(userId: String): String {
+    private fun startChatWithUser(user: UserHandle): String {
         val currentUser = firebaseAuth.currentUser!!
         val chat = ChatHandle()
-        chat.participants.addAll(arrayListOf(currentUser.uid, userId))
+        chat.participants.addAll(arrayListOf(UserHandle(currentUser.uid, currentUser.displayName!!), user))
         return chatRepository.createChat(chat)
     }
 
