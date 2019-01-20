@@ -7,6 +7,7 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.iid.FirebaseInstanceId
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_auth.*
 import pl.dmcs.pb.richchat.R
@@ -73,9 +74,12 @@ class AuthActivity : DaggerAppCompatActivity() {
     }
 
     private fun addToDb() {
-        val currentUser : FirebaseUser = firebaseAuth.currentUser!!
-        val user = User(currentUser.uid, currentUser.displayName!!, null, null)
-        userRepository.createUser(user)
+        val currentUser: FirebaseUser = firebaseAuth.currentUser!!
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener { id ->
+            val user = User(currentUser.uid, id.token, currentUser.displayName!!, null, null)
+            userRepository.createUser(user)
+        }
+
     }
 
     private fun handleFailure(requestCode: Int, response: IdpResponse?) {
