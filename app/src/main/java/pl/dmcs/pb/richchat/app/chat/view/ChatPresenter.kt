@@ -6,7 +6,7 @@ import pl.dmcs.pb.richchat.data.ChatRepository
 import pl.dmcs.pb.richchat.data.entity.ChatHandle
 import javax.inject.Inject
 
-class NoParamertersPassed() : Throwable()
+class NoParamertersPassed : Throwable()
 
 class ChatPresenter
 @Inject
@@ -18,14 +18,12 @@ constructor(
     private lateinit var chatId: String
 
     fun onCreate(savedInstanceState: Bundle?) {
-        savedInstanceState!!
+        val extras = view.intent.extras
         chatId =
                 when {
-                    savedInstanceState.containsKey(CHAT_ID_KEY) -> savedInstanceState.getString(CHAT_ID_KEY)
-                    savedInstanceState.containsKey(USER_ID_KEY) -> startChatWithUser(
-                        savedInstanceState.getString(
-                            USER_ID_KEY
-                        )
+                    extras.containsKey(CHAT_ID_KEY) -> extras.getString(CHAT_ID_KEY)
+                    extras.containsKey(USER_ID_KEY) -> startChatWithUser(
+                        extras.getString(USER_ID_KEY)
                     )
                     else -> throw  NoParamertersPassed()
                 }

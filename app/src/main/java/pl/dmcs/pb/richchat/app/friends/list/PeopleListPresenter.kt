@@ -81,7 +81,7 @@ constructor(
     }
 
     private fun startChat(userId: String) {
-        ChatActivity.startChatWithUser(view, userId)
+        view.startActivity(ChatActivity.startChatWithUser(view, userId))
     }
 
 }

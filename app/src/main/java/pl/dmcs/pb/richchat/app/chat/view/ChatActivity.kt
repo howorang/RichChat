@@ -12,7 +12,10 @@ const val USER_ID_KEY = "user_id"
 
 class ChatActivity
 @Inject
-constructor(private val presenter: ChatPresenter) : BaseActivity() {
+constructor() : BaseActivity() {
+
+    @Inject
+    lateinit var presenter: ChatPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +25,13 @@ constructor(private val presenter: ChatPresenter) : BaseActivity() {
 
     companion object {
         fun openChat(context: Context, chatId: String): Intent {
-            val intent = Intent(context, this::class.java)
+            val intent = Intent(context, ChatActivity::class.java)
             intent.putExtra(CHAT_ID_KEY, chatId)
             return intent
         }
 
         fun startChatWithUser(context: Context, userId: String): Intent {
-            val intent = Intent(context, this::class.java)
+            val intent = Intent(context, ChatActivity::class.java)
             intent.putExtra(USER_ID_KEY, userId)
             return intent
         }

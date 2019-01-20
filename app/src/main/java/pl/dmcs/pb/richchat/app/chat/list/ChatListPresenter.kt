@@ -19,7 +19,7 @@ class ChatListPresenter
 constructor(
     private val view: ChatListFragment,
     private val firebaseDatabase: FirebaseDatabase,
-    private val firebaseAuth : FirebaseAuth
+    private val firebaseAuth: FirebaseAuth
 ) : BasePresenter() {
 
     fun onStart() {
@@ -31,7 +31,8 @@ constructor(
         val query = firebaseDatabase.reference.child("/users/$userId/chats/")
         val options = FirebaseRecyclerOptions
             .Builder<ChatHandle>()
-            .setQuery(query
+            .setQuery(
+                query
             ) { it.getValue<ChatHandle>(ChatHandle::class.java)!! }
             .build()
 
@@ -50,7 +51,9 @@ constructor(
         view.recycler.adapter = adapter
     }
 
-    fun bindOnClickListener(view : View, model : ChatHandle) {
-        view.setOnClickListener { View.OnClickListener { ChatActivity.startChatWithUser(view.context, model.chatId) } }
+    fun bindOnClickListener(view: View, model: ChatHandle) {
+        view.setOnClickListener {
+            view.context.startActivity(ChatActivity.startChatWithUser(view.context, model.chatId))
+        }
     }
 }
