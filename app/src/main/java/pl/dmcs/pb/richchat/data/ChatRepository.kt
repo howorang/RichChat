@@ -12,7 +12,10 @@ class ChatRepository(val database: FirebaseDatabase) {
     fun createChat(chatHandle: ChatHandle): String {
         val chatRef = database.reference.child("/chat_messages").push()
         chatHandle.chatId = chatRef.key!!
-        val chatMessages = ChatMessages(chatId = chatHandle.chatId)
+        val chatMessages = ChatMessages(
+            chatId = chatHandle.chatId,
+            participants = chatHandle.participants.map { userHandle -> userHandle.userId }.toMutableList()
+        )
         chatRef.setValue(chatMessages)
         chatHandle.participants.forEach {
             val userChatRef = database.reference.child("/users/${it.userId}/chats/${chatHandle.chatId}")
@@ -21,7 +24,7 @@ class ChatRepository(val database: FirebaseDatabase) {
         return chatHandle.chatId
     }
 
-    fun sendMessage(chatId : String, message: Message) {
+    fun sendMessage(chatId: String, message: Message) {
         message.messageTimestamp = messageDateFormat.format(Date())
         val reference = database.reference
         val chatRef = reference.child("/chat_messages/$chatId/messages")
