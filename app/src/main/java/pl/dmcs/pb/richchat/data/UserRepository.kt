@@ -3,6 +3,7 @@ package pl.dmcs.pb.richchat.data
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import pl.dmcs.pb.richchat.data.entity.User
+import pl.dmcs.pb.richchat.data.entity.UserHandle
 
 class UserRepository(val database: FirebaseDatabase) {
 
@@ -18,5 +19,12 @@ class UserRepository(val database: FirebaseDatabase) {
         ref.child("users")
             .child(id)
             .addListenerForSingleValueEvent(listener)
+
+    }
+
+    fun addFriend(userId: String, friend: UserHandle) {
+        val ref = database.reference
+        val newFriendRef = ref.child("users/$userId/friends").push()
+        newFriendRef.setValue(friend)
     }
 }

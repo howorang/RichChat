@@ -1,6 +1,5 @@
 package pl.dmcs.pb.richchat.app.friends.list
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -13,9 +12,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_user_list.*
 import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.BasePresenter
-import pl.dmcs.pb.richchat.app.chat.view.ChatActivity
 import pl.dmcs.pb.richchat.data.entity.UserHandle
-import javax.inject.Inject
 
 abstract class  UserListPresenter
 constructor(
@@ -38,8 +35,12 @@ constructor(
         adapter.stopListening()
     }
 
+    abstract fun getUsersPath(): String
+
+    abstract fun bindOnUserClickListener(model: UserHandle): View.OnClickListener?
+
     private fun initUserListAdapter() {
-        val query = firebaseDatabase.reference.child("users/")
+        val query = firebaseDatabase.reference.child(getUsersPath())
         val options = FirebaseRecyclerOptions
             .Builder<UserHandle>()
             .setQuery(
@@ -50,7 +51,7 @@ constructor(
         adapter = object : FirebaseRecyclerAdapter<UserHandle, MyViewHolder>(options) {
             override fun onBindViewHolder(holder: MyViewHolder, position: Int, model: UserHandle) {
                 holder.textView.text = model.username
-                bindOnClickListener(holder.itemView, model)
+                holder.itemView.setOnClickListener(bindOnUserClickListener(model))
             }
 
             override fun onCreateViewHolder(
@@ -62,29 +63,8 @@ constructor(
                 return MyViewHolder(textView)
             }
 
-            private fun bindOnClickListener(itemView: View, model: UserHandle) {
-                itemView.setOnClickListener{
-                    val alertDialog: AlertDialog = view?.let {
-                        val builder = AlertDialog.Builder(it.context)
-                        builder.apply {
-                            setPositiveButton(
-                                R.string.ok
-                            ) { dialog, id ->
-                                startChat(model)
-                            }
-                            setNegativeButton(R.string.cancel) { _, _ -> Unit }
-                        }
-                        builder.create()
-                    }
-                    alertDialog.show()
-                }
-            }
         }
         view.friend_list.adapter = adapter
-    }
-
-    private fun startChat(userId: UserHandle) {
-        view.startActivity(ChatActivity.startChatWithUser(view.context!!, userId))
     }
 
 }
