@@ -11,6 +11,7 @@ import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.BaseActivity
 import pl.dmcs.pb.richchat.app.chat.list.ChatListFragment
 import pl.dmcs.pb.richchat.app.friends.list.PeopleListActivity
+import pl.dmcs.pb.richchat.app.friends.list.UserListFragment
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -28,7 +29,10 @@ class MainActivity : BaseActivity() {
                     true
                 }
                 R.id.nav_public -> true
-                R.id.nav_people -> true
+                R.id.nav_friends -> {
+                    replaceFragment(R.id.fragment_container, UserListFragment.newInstance())
+                    true
+                }
                 else -> false
             }
         }

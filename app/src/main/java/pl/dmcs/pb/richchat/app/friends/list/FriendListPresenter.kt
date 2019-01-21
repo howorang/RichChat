@@ -17,11 +17,11 @@ import pl.dmcs.pb.richchat.app.chat.view.ChatActivity
 import pl.dmcs.pb.richchat.data.entity.UserHandle
 import javax.inject.Inject
 
-class PeopleListPresenter
+class FriendListPresenter
 @Inject
 constructor(
     private val view: UserListFragment,
     private val firebaseDatabase: FirebaseDatabase
-) : UserListPresenter(view, firebaseDatabase) {
+) :  UserListPresenter(view, firebaseDatabase) {
 
 }

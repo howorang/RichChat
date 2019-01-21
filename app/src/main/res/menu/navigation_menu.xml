@@ -11,6 +11,6 @@
             android:title="@string/nav_public" />
 
     <item
-            android:id="@+id/nav_people"
-            android:title="@string/people" />
+            android:id="@+id/nav_friends"
+            android:title="@string/friends" />
 </menu>

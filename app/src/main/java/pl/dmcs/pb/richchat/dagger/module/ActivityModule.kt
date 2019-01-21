@@ -8,6 +8,7 @@ import pl.dmcs.pb.richchat.app.auth.AuthActivityModule
 import pl.dmcs.pb.richchat.app.chat.view.ChatActivity
 import pl.dmcs.pb.richchat.app.chat.view.ChatActivityModule
 import pl.dmcs.pb.richchat.app.friends.list.PeopleListActivity
+import pl.dmcs.pb.richchat.app.friends.list.PeopleListActivityModule
 import pl.dmcs.pb.richchat.app.main.MainActivity
 import pl.dmcs.pb.richchat.app.main.MainActivityModule
 import pl.dmcs.pb.richchat.dagger.ActivityScope
@@ -28,7 +29,7 @@ abstract class ActivityModule {
     abstract fun authActivityInjector() : AuthActivity
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = [AuthActivityModule::class])
+    @ContributesAndroidInjector(modules = [PeopleListActivityModule::class])
     abstract fun peopleActivityInjector() : PeopleListActivity
 
     @ActivityScope
