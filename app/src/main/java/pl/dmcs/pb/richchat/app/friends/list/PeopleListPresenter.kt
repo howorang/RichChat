@@ -16,6 +16,7 @@ import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.BasePresenter
 import pl.dmcs.pb.richchat.app.chat.view.ChatActivity
 import pl.dmcs.pb.richchat.data.UserRepository
+import pl.dmcs.pb.richchat.data.entity.User
 import pl.dmcs.pb.richchat.data.entity.UserHandle
 import javax.inject.Inject
 
@@ -45,7 +46,8 @@ constructor(
     }
 
     private fun addToFriends(model: UserHandle) {
-        userRepository.addFriend(firebaseAuth.currentUser!!.uid, model)
+        val uH = UserHandle(firebaseAuth.currentUser!!.uid, firebaseAuth.currentUser!!.displayName!!)
+        userRepository.addFriend(uH, model)
     }
 
     override fun getUsersPath(): String = "/users"

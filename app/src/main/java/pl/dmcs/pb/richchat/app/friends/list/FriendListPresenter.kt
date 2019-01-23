@@ -44,7 +44,7 @@ constructor(
         return "users/$userId/friends"
     }
 
-    private fun startChatWithUser(user: UserHandle): String {
+    private fun startChatWithUser(user: UserHandle) {
         val currentUser = firebaseAuth.currentUser!!
         val chat = ChatHandle()
         chat.participants.addAll(arrayListOf(UserHandle(currentUser.uid, currentUser.displayName!!), user))
@@ -56,13 +56,13 @@ constructor(
 
             override fun onDataChange(p0: DataSnapshot) {
                 if (p0.exists()) {
-                    startChat(p0.key!!)
+                    val value = p0.children.first().getValue(ChatHandle::class.java)
+                    startChat(value!!.chatId)
                 } else {
                     startChat(chatRepository.createChat(chat))
                 }
             }
         })
-        return chatRepository.createChat(chat)
     }
 
     private fun startChat(chatId: String) {
