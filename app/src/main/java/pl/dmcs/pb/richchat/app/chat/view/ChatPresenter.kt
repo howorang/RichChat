@@ -3,12 +3,16 @@ package pl.dmcs.pb.richchat.app.chat.view
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_chat_view.*
 import pl.dmcs.pb.richchat.app.BasePresenter
 import pl.dmcs.pb.richchat.data.ChatRepository
 import pl.dmcs.pb.richchat.data.entity.ChatHandle
 import pl.dmcs.pb.richchat.data.entity.Message
 import pl.dmcs.pb.richchat.data.entity.UserHandle
+import pl.dmcs.pb.richchat.data.entity.getParticipantsHash
 import javax.inject.Inject
 
 class NoParamertersPassed : Throwable()
@@ -55,21 +59,10 @@ constructor(
 
     private fun initChatId() {
         val extras = view.intent.extras
-        chatId =
-                when {
-                    extras.containsKey(CHAT_ID_KEY) -> extras.getString(CHAT_ID_KEY)
-                    extras.containsKey(USER_KEY) -> startChatWithUser(
-                        extras.get(USER_KEY) as UserHandle
-                    )
-                    else -> throw  NoParamertersPassed()
-                }
-    }
-
-    private fun startChatWithUser(user: UserHandle): String {
-        val currentUser = firebaseAuth.currentUser!!
-        val chat = ChatHandle()
-        chat.participants.addAll(arrayListOf(UserHandle(currentUser.uid, currentUser.displayName!!), user))
-        return chatRepository.createChat(chat)
+        when {
+            extras.containsKey(CHAT_ID_KEY) -> chatId = extras.getString(CHAT_ID_KEY)
+            else -> throw  NoParamertersPassed()
+        }
     }
 
 }

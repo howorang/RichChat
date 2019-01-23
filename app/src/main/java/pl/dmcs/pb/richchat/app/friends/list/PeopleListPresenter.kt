@@ -31,6 +31,7 @@ constructor(
         val alertDialog: AlertDialog = view?.let {
             val builder = AlertDialog.Builder(it.context)
             builder.apply {
+                setMessage("Dodać znajmoego?")
                 setPositiveButton(
                     R.string.ok
                 ) { dialog, id ->

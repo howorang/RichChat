@@ -36,11 +36,5 @@ constructor() : BaseActivity() {
             return intent
         }
 
-        fun startChatWithUser(context: Context, user: UserHandle): Intent {
-            val intent = Intent(context, ChatActivity::class.java)
-            intent.putExtra(USER_KEY, user)
-            return intent
-        }
-
     }
 }

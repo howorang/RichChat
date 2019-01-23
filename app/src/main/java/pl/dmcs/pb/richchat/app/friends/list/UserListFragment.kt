@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_user_list.*
 import pl.dmcs.pb.richchat.R
 import pl.dmcs.pb.richchat.app.BaseFragment
+import pl.dmcs.pb.richchat.app.chat.view.USER_KEY
 
 class UserListFragment : BaseFragment<UserListPresenter>() {
 

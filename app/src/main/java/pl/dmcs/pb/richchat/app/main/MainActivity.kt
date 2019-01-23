@@ -53,6 +53,7 @@ class MainActivity : BaseActivity() {
             }
             R.id.logout_option -> {
                 firebaseAuth.signOut()
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

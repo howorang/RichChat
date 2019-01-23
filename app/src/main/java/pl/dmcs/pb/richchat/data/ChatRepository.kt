@@ -1,10 +1,10 @@
 package pl.dmcs.pb.richchat.data
 
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import pl.dmcs.pb.richchat.data.entity.ChatHandle
-import pl.dmcs.pb.richchat.data.entity.ChatMessages
-import pl.dmcs.pb.richchat.data.entity.Message
-import pl.dmcs.pb.richchat.data.entity.messageDateFormat
+import com.google.firebase.database.ValueEventListener
+import pl.dmcs.pb.richchat.data.entity.*
 import java.util.*
 
 class ChatRepository(val database: FirebaseDatabase) {
@@ -30,5 +30,14 @@ class ChatRepository(val database: FirebaseDatabase) {
         val chatRef = reference.child("/chat_messages/$chatId/messages")
         val messageRef = chatRef.push()
         messageRef.setValue(message)
+    }
+
+    fun lookForExistingChat(currentUserId: String, userId: String, valueEventListener: ValueEventListener) {
+        val particpantsHash = getParticipantsHash(arrayListOf(currentUserId, userId))
+        database.getReference("users/$currentUserId/chats")
+            .orderByChild("participantsHash")
+            .equalTo(particpantsHash)
+            .limitToFirst(1)
+            .addListenerForSingleValueEvent(valueEventListener)
     }
 }
