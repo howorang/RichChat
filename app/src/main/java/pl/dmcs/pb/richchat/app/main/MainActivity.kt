@@ -22,13 +22,13 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        replaceFragment(R.id.fragment_container, ChatListFragment.newInstance(1))
         main_bottom_navigation_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_chats -> {
                     replaceFragment(R.id.fragment_container, ChatListFragment.newInstance(1))
                     true
                 }
-                R.id.nav_public -> true
                 R.id.nav_friends -> {
                     replaceFragment(R.id.fragment_container, UserListFragment.newInstance())
                     true
